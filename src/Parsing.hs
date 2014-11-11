@@ -18,7 +18,8 @@ tree = do
     leaves <- sepBy tree (char ',')
     spaces
     char ']' <?> "] -- end of leaves"
-    return $ Branch value (read x, read y) leaves
+    spaces
+    return $ Branch value (read x, 0 - read y) leaves
 
 parseTree :: String -> Either ParseError (Tree String)
 parseTree input = parse tree "parse error" input
